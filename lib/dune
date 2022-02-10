@@ -1,0 +1,4 @@
+(library
+ (name ocaml_channels)
+ (public_name ocaml_channels)
+ (libraries base domainslib))
