@@ -24,6 +24,6 @@ let subscribe subs topic : 'a Chan.t =
   in
   chan
 
-let publish subs id content =
-  let sub = Hashtbl.find subs id in
-  Chan.send sub.c content
+let publish subs topic content =
+  let sub = Hashtbl.find subs topic in
+  List.iter (fun conn -> Chan.send conn content) sub.conns
