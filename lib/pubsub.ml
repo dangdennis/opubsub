@@ -4,7 +4,7 @@ type 'a subscription = {
   id : string;
   (* publish to this channel to fan out messages to subscribers *)
   c : 'a Chan.t;
-  conns : 'a Chan.t list;
+  mutable conns : 'a Chan.t list;
   mutable listening : bool;
 }
 
@@ -20,7 +20,9 @@ let subscribe subs topic : 'a Chan.t =
             conns = [ chan ];
             listening = false;
           }
-    | Some _ -> ()
+    | Some sub ->
+        sub.conns <- List.append [ chan ] sub.conns;
+        ()
   in
   chan
 
