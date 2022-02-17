@@ -27,5 +27,6 @@ let subscribe subs topic : 'a Chan.t =
   chan
 
 let publish subs topic content =
-  let sub = Hashtbl.find subs topic in
-  List.iter (fun conn -> Chan.send conn content) sub.conns
+  match Hashtbl.find_opt subs topic with
+  | None -> ()
+  | Some sub -> List.iter (fun conn -> Chan.send conn content) sub.conns
