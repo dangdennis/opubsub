@@ -1,4 +1,4 @@
 (library
- (name ocaml_channels)
- (public_name ocaml_channels)
- (libraries base domainslib))
+ (name pubsub)
+ (public_name pubsub)
+ (libraries base domainslib eio_main))
