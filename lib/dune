@@ -1,4 +1,4 @@
 (library
  (name pubsub)
  (public_name pubsub)
- (libraries base domainslib eio_main))
+ (libraries domainslib eio_main))
